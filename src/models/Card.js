@@ -22,4 +22,14 @@ class Card {
 
     }
 
+    getEffectivePower() {
+        return this.power;
+    }
+
+    getEffectiveAttack() {
+        return this.attack;
+    }
+
 }
+
+export default Card;
