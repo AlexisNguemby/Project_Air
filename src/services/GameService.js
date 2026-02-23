@@ -8,7 +8,7 @@ class GameService {
     this.combatService = new CombatService();
   }
 
-  // Debut du tour : chaque joueur gagne 1 etoile
+  // Debut du tour
   startTurn(game) {
     game.player1.gainStar();
     game.player2.gainStar();

@@ -18,7 +18,7 @@ class Card {
         this.power = power;
         this.attack = attack;
         this.description = description;
-        this.image = image; // ex: "assets/cards/human_001.png"
+        this.image = image; 
 
     }
 

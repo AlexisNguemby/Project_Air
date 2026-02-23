@@ -12,8 +12,8 @@ class CombatService {
 
   /**
    * Phase 1: Duel entre deux cartes
-   * @param {Card} attackerCard - Carte attaquante
-   * @param {Card} defenderCard - Carte defenseuse
+   * @param {Card} attackerCard 
+   * @param {Card} defenderCard 
    * @param {number} attackerStarsUsed - Etoiles utilisees par l'attaquant (multiplie puissance)
    * @param {number} defenderStarsUsed - Etoiles utilisees par le defenseur (multiplie puissance)
    * @returns {CombatResult}

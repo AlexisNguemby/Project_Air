@@ -12,7 +12,7 @@ class Game {
     this.state = "ongoing"; // "ongoing", "player1_wins", "player2_wins"
   }
 
-  // Getters utilitaires
+  
   isOngoing() {
     return this.state === "ongoing";
   }
