@@ -1,23 +1,23 @@
-// Board.js
+import Card from "./Card.js";
 
-// terrain 4v4
-
-// cartes en jeu
 class Board {
+  playerSlots: (Card | null)[];
+  opponentSlots: (Card | null)[];
+
   constructor() {
     this.playerSlots = Array(4).fill(null);
     this.opponentSlots = Array(4).fill(null);
   }
 
-  placeCard(card, slotIndex, isPlayer) {
+  placeCard(card: Card, slotIndex: number, isPlayer: boolean): boolean {
     if (slotIndex < 0 || slotIndex > 3) return false;
     const slots = isPlayer ? this.playerSlots : this.opponentSlots;
-    if (slots[slotIndex] !== null) return false; // slot occupé
+    if (slots[slotIndex] !== null) return false;
     slots[slotIndex] = card;
     return true;
   }
 
-  clearSlot(slotIndex, isPlayer) {
+  clearSlot(slotIndex: number, isPlayer: boolean): void {
     const slots = isPlayer ? this.playerSlots : this.opponentSlots;
     slots[slotIndex] = null;
   }

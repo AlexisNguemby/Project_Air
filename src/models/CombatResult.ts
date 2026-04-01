@@ -1,15 +1,31 @@
+import Card from "./Card.js";
+
 class CombatResult {
-  constructor(winner, loser, directDamage, winnerPower = 0, loserPower = 0) {
+  winner: Card | null;
+  loser: Card | null;
+  directDamage: number;
+  winnerPower: number;
+  loserPower: number;
+  resonanceUsed: boolean;
+  finalDamage: number;
+
+  constructor(
+    winner: Card | null,
+    loser: Card | null,
+    directDamage: number,
+    winnerPower: number = 0,
+    loserPower: number = 0
+  ) {
     this.winner = winner;
     this.loser = loser;
     this.directDamage = directDamage;
-    this.winnerPower = winnerPower;   // Puissance finale (après étoiles)
-    this.loserPower = loserPower;     // Puissance finale (après étoiles)
-    this.resonanceUsed = false;       // Sera mis à jour si résonance activée
-    this.finalDamage = directDamage;  // Dégâts finaux (après résonance)
+    this.winnerPower = winnerPower;
+    this.loserPower = loserPower;
+    this.resonanceUsed = false;
+    this.finalDamage = directDamage;
   }
 
-  applyResonance() {
+  applyResonance(): void {
     this.resonanceUsed = true;
     this.finalDamage = this.directDamage + 2;
   }

@@ -1,72 +1,61 @@
-// Player.js
+class Player {
+  id: string;
+  hp: number;
+  stars: number;
+  maxStars: number;
+  credits: number;
+  decks: any[];
+  collection: any[];
+  avatar: any;
 
-// points de vie
+  constructor(id: string) {
+    this.id = id;
+    this.hp = 12;
+    this.stars = 12;
+    this.maxStars = 12;
+    this.credits = 100;
+    this.decks = [];
+    this.collection = [];
+    this.avatar = null;
+  }
 
-// étoiles
+  takeDamage(amount: number): number {
+    this.hp -= amount;
+    if (this.hp < 0) this.hp = 0;
+    return this.hp;
+  }
 
-// crédits
+  isAlive(): boolean {
+    return this.hp > 0;
+  }
 
-// decks
-
-// collection
-
-class Player{
-    constructor(id){
-        this.id = id;
-        this.hp = 12;
-        this.stars = 12;
-        this.maxStars = 12;
-        this.credits = 100;
-        this.decks = [];
-        this.collection = [];
-        this.avatar = null;
+  gainStar(): number {
+    if (this.stars < this.maxStars) {
+      this.stars++;
     }
+    return this.stars;
+  }
 
-    takeDamage(amount) {
-        this.hp -= amount;
-        if (this.hp < 0) this.hp = 0;
-        return this.hp;
+  useStars(amount: number): boolean {
+    if (this.stars >= amount) {
+      this.stars -= amount;
+      return true;
     }
+    return false;
+  }
 
-    isAlive() {
-        return this.hp > 0;
-    }
+  canUseResonance(): boolean {
+    return this.stars >= 3;
+  }
 
+  activateResonance(): boolean {
+    return this.useStars(3);
+  }
 
-
-    // Gagne 1 étoile au début du tour (max 12)
-    gainStar() {
-        if (this.stars < this.maxStars) {
-            this.stars++;
-        }
-        return this.stars;
-    }
-
-    // Dépense des étoiles (retourne true si succès)
-    useStars(amount) {
-        if (this.stars >= amount) {
-            this.stars -= amount;
-            return true;
-        }
-        return false;
-    }
-
-     //  meme logique de thingy Urban rival (coût: 3 étoiles)
-    canUseResonance() {
-        return this.stars >= 3;
-    }
-
-    //  (3 étoiles pour résonance )
-    activateResonance() {
-        return this.useStars(3);
-    }
-
-    
-    // 1 étoile = x2, 2 étoiles = x4, 3 étoiles = x8, etc.
-    getPowerMultiplier(starsSpent) {
-        if (starsSpent <= 0) return 1;
-        return Math.pow(2, starsSpent);
-    }
+  getPowerMultiplier(starsSpent: number): number {
+    if (starsSpent <= 0) return 1;
+    return Math.pow(2, starsSpent);
+  }
 }
 
 export default Player;
