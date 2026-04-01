@@ -2,5 +2,13 @@
   "name": "project-air",
   "version": "1.0.0",
   "type": "module",
-  "description": "Jeu de cartes"
+  "description": "Jeu de cartes",
+  "dependencies": {
+    "fastify": "^5.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
 }
