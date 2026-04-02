@@ -5,7 +5,15 @@
   "description": "Jeu de cartes",
   "dependencies": {
     "fastify": "^5.8.4"
+
   },
+  
+    "scripts": {
+      "start": "node src/index.ts",
+      "dev": "npx tsc && node dist/index.js"
+      
+    },
+  
   "devDependencies": {
     "@types/node": "^25.5.0",
     "ts-node": "^10.9.2",
