@@ -33,19 +33,7 @@ model Card {
   combat_losses      CombatResult[] @relation("CombatLoser")
 }
 
-model Player {
-  player_id String @id
-  hp        Int    @default(12)
-  stars     Int    @default(12)
-  maxStars  Int    @default(12)
-  credits   Int    @default(100)
-  avatar    String?
 
-  decks            Deck[]
-  collection       PlayerCard[]
-  games_as_player1 Game[] @relation("GamePlayer1")
-  games_as_player2 Game[] @relation("GamePlayer2")
-}
 
 model Deck {
   deck_id   Int    @id @default(autoincrement())
