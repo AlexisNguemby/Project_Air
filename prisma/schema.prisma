@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum GameState {
+  ongoing
+  player1_wins
+  player2_wins
+}
+
+model Card {
+  card_id     Int    @id @default(autoincrement())
+  card_name   String @unique
+  faction     String @default("unknown")
+  power       Int
+  attack      Int
+  description String @default("")
+  card_img    String @default("")
+
+  deck_cards         DeckCard[]
+  player_cards       PlayerCard[]
+  combat_wins        CombatResult[] @relation("CombatWinner")
+  combat_losses      CombatResult[] @relation("CombatLoser")
+}
+
+model Player {
+  player_id String @id
+  hp        Int    @default(12)
+  stars     Int    @default(12)
+  maxStars  Int    @default(12)
+  credits   Int    @default(100)
+  avatar    String?
+
+  decks            Deck[]
+  collection       PlayerCard[]
+  games_as_player1 Game[] @relation("GamePlayer1")
+  games_as_player2 Game[] @relation("GamePlayer2")
+}
+
+model Deck {
+  deck_id   Int    @id @default(autoincrement())
+  player_id String
+
+  player Player @relation(fields: [player_id], references: [player_id], onDelete: Cascade)
+  cards  DeckCard[]
+}
+
+model DeckCard {
+  deck_id Int
+  card_id Int
+
+  deck Deck @relation(fields: [deck_id], references: [deck_id], onDelete: Cascade)
+  card Card @relation(fields: [card_id], references: [card_id], onDelete: Cascade)
+
+  @@id([deck_id, card_id])
+}
+
+model PlayerCard {
+  player_id String
+  card_id   Int
+
+  player Player @relation(fields: [player_id], references: [player_id], onDelete: Cascade)
+  card   Card   @relation(fields: [card_id], references: [card_id], onDelete: Cascade)
+
+  @@id([player_id, card_id])
+}
+
+model Game {
+  game_id      Int       @id @default(autoincrement())
+  player1_id   String
+  player2_id   String
+  current_turn Int       @default(0)
+  state        GameState @default(ongoing)
+
+  player1 Player @relation("GamePlayer1", fields: [player1_id], references: [player_id])
+  player2 Player @relation("GamePlayer2", fields: [player2_id], references: [player_id])
+  board         Board?
+  combat_results CombatResult[]
+}
+
+model Board {
+  board_id       Int   @id @default(autoincrement())
+  game_id        Int   @unique
+  player_slots   Json
+  opponent_slots Json
+
+  game Game @relation(fields: [game_id], references: [game_id], onDelete: Cascade)
+}
+
+model CombatResult {
+  combat_result_id Int  @id @default(autoincrement())
+  game_id          Int
+  winner_card_id   Int?
+  loser_card_id    Int?
+  direct_damage    Int
+  winner_power     Int  @default(0)
+  loser_power      Int  @default(0)
+  resonance_used   Boolean @default(false)
+  final_damage     Int
+
+  game   Game @relation(fields: [game_id], references: [game_id], onDelete: Cascade)
+  winner Card? @relation("CombatWinner", fields: [winner_card_id], references: [card_id])
+  loser  Card? @relation("CombatLoser", fields: [loser_card_id], references: [card_id])
+}
+ 

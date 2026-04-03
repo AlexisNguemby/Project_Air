@@ -1,0 +1,33 @@
+{
+  "name": "project-air",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Jeu de cartes",
+  "dependencies": {
+    "@prisma/adapter-mariadb": "^7.6.0",
+    "@prisma/client": "^7.6.0",
+    "fastify": "^5.8.4"
+  },
+  "scripts": {
+    "start": "node src/index.ts",
+    "dev": "npx tsc && node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "prisma": "^7.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexisNguemby/Project_Air.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexisNguemby/Project_Air/issues"
+  },
+  "homepage": "https://github.com/AlexisNguemby/Project_Air#readme"
+}

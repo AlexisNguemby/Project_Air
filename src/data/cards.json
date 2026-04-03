@@ -1,0 +1,110 @@
+[
+  {
+    "id": "HUMAN_001",
+    "name": "Garde Royal",
+    "faction": "Humain",
+    "rarity": "commune",
+    "power": 2,
+    "attack": 2,
+    "description": "Soldat polyvalent. Inflige 4 dégâts sous résonance."
+  },
+  {
+    "id": "HUMAN_002",
+    "name": "Chevalier Errant",
+    "faction": "Humain",
+    "rarity": "rare",
+    "power": 4,
+    "attack": 1,
+    "description": "Fort en duel. Inflige 3 dégâts sous résonance."
+  },
+  {
+    "id": "HUMAN_003",
+    "name": "Mage de Guerre",
+    "faction": "Humain",
+    "rarity": "epique",
+    "power": 1,
+    "attack": 3,
+    "description": "Faible en duel, mais dévastateur (5 dégâts sous résonance)."
+  },
+  {
+    "id": "HUMAN_004",
+    "name": "Champion",
+    "faction": "Humain",
+    "rarity": "commune",
+    "power": 3,
+    "attack": 2,
+    "description": "L'équilibre parfait pour un deck humain."
+  },
+  {
+    "id": "DEMON_001",
+    "name": "Diablotin",
+    "faction": "Démon",
+    "rarity": "commune",
+    "power": 1,
+    "attack": 2,
+    "description": "Une nuisance qui nécessite des étoiles pour gagner ses duels."
+  },
+  {
+    "id": "DEMON_002",
+    "name": "Molosse des Enfers",
+    "faction": "Démon",
+    "rarity": "commune",
+    "power": 5,
+    "attack": 0,
+    "description": "Le mur ultime. Ne peut pas blesser le joueur, même sous résonance."
+  },
+  {
+    "id": "DEMON_003",
+    "name": "Succube",
+    "faction": "Démon",
+    "rarity": "rare",
+    "power": 2,
+    "attack": 3,
+    "description": "Fait très mal aux PV (5 dégâts max), mais fragile en duel."
+  },
+  {
+    "id": "DEMON_004",
+    "name": "Seigneur des Abysses",
+    "faction": "Démon",
+    "rarity": "epique",
+    "power": 6,
+    "attack": 2,
+    "description": "Domine le plateau. 4 dégâts sous résonance."
+  },
+  {
+    "id": "ELF_NIGHT_001",
+    "name": "Sentinelle",
+    "faction": "Elfe de la nuit",
+    "rarity": "commune",
+    "power": 2,
+    "attack": 1,
+    "description": "Unité de base rapide. 3 dégâts sous résonance."
+  },
+  {
+    "id": "ELF_NIGHT_002",
+    "name": "Traqueuse",
+    "faction": "Elfe de la nuit",
+    "rarity": "rare",
+    "power": 3,
+    "attack": 2,
+    "description": "Efficace pour éliminer les menaces moyennes."
+  },
+  {
+    "id": "ELF_NIGHT_003",
+    "name": "Druide de la Griffe",
+    "faction": "Elfe de la nuit",
+    "rarity": "commune",
+    "power": 4,
+    "attack": 1,
+    "description": "Solide défenseur des forêts."
+  },
+  {
+    "id": "ELF_NIGHT_004",
+    "name": "Ombre Vengeresse",
+    "faction": "Elfe de la nuit",
+    "rarity": "epique",
+    "power": 1,
+    "attack": 4,
+    "description": "L'assassin ultime. Inflige 6 dégâts sous résonance (50% des PV max)!"
+  }
+]
