@@ -1,0 +1,299 @@
+/* ==========================================================================
+   STYLE INSPIRÉ D'URBAN RIVALS & PIXEL ART (CSS PUR)
+   ========================================================================== */
+
+/* Importation de la police Pixel (similaire à ta carte) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.urban-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0a0a0a;
+  font-family: 'Arial Black', 'Impact', sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Classe utilitaire pour appliquer la police Pixel */
+.pixel-text {
+  font-family: 'Press Start 2P', monospace !important;
+  letter-spacing: 0px !important;
+}
+
+/* 1. ARRIÈRE-PLAN (SPLASH ART) */
+.urban-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;      /* Force l'image à couvrir tout l'espace disponible */
+  background-position: center;  /* Centre le vortex cosmique au milieu de l'écran */
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.urban-overlay {
+  position: absolute;
+  inset: 0;
+  /* Un dégradé plus prononcé en bas (0.85) pour fondre l'image dans le noir du footer */
+  background: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.3), 
+    transparent 50%, 
+    rgba(10, 10, 10, 0.85)
+  );
+}
+
+/* 2. NAVBAR BISEAUTÉE */
+.urban-header {
+  position: relative;
+  z-index: 50;
+  width: 100%;
+  padding: 10px 20px 0 20px;
+  box-sizing: border-box;
+}
+
+.urban-navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #171717;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #000000;
+  border-bottom: 4px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 96% 100%, 0 100%);
+}
+
+.urban-logo {
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-style: italic;
+  background: linear-gradient(to right, #facc15, #f97316);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
+.urban-nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.urban-nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.urban-nav-links a:hover, .urban-nav-links a.active {
+  color: #facc15;
+}
+
+/* BOUTON SE CONNECTER */
+.btn-play-top {
+  background-color: #facc15;
+  color: #000000;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-style: italic;
+  padding: 10px 20px;
+  font-size: 0.65rem;
+  border-radius: 50px;
+  border: 3px solid #000000;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-play-top:hover {
+  background-color: #fde047;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+/* 3. HERO SECTION */
+.urban-main {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 140px);
+  padding: 0 20px 100px 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.urban-title-container {
+  transform: rotate(-1deg);
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.8));
+}
+
+.urban-title-main {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 3.2rem;
+  margin: 0;
+  line-height: 1.3;
+  color: #e5e5e5;
+  -webkit-text-stroke: 2px #000000;
+}
+
+.urban-title-sub {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2.4rem;
+  margin: 15px 0 0 0;
+  color: #facc15;
+  -webkit-text-stroke: 2px #000000;
+}
+
+.urban-tag {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  background-color: #9333ea;
+  color: #ffffff;
+  font-size: 0.55rem;
+  padding: 6px 12px;
+  border: 2px solid #000000;
+  transform: rotate(3deg) translateY(12px);
+}
+
+/* BOUTON CENTRAL RONDE PLAY */
+.urban-central-button {
+  width: 110px;
+  height: 110px;
+  background-color: #171717;
+  border: 4px solid #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(250, 204, 21, 0.2);
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.urban-central-button:hover {
+  box-shadow: 0 0 40px rgba(250, 204, 21, 0.5);
+}
+
+.urban-central-inner {
+  width: 70px;
+  height: 70px;
+  background-color: #facc15;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.urban-central-button:hover .urban-central-inner {
+  transform: scale(1.05);
+}
+
+.play-triangle {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-left: 18px solid #000000;
+  border-bottom: 10px solid transparent;
+  margin-left: 4px;
+}
+
+/* 4. FOOTER RECTILIGNE ULTRA COMPACT */
+.urban-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #111111;
+  border-top: 3px solid #000000;
+  padding: 8px 0; /* Épaisseur fine absolue */
+  z-index: 20;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.7);
+}
+
+.urban-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.platform-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid #333333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.platform-badge:hover {
+  border-color: #facc15;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.platform-icon {
+  font-size: 1rem;
+}
+
+.platform-text {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.platform-text span {
+  display: inline-block;
+}
+
+.platform-text .sub {
+  font-size: 0.5rem;
+  color: #888888;
+  text-transform: uppercase;
+}
+
+.platform-text .main {
+  font-size: 0.6rem;
+  color: #facc15;
+  font-weight: bold;
+}
+
+/* Évite les collisions avec le bas de page */
+.urban-main {
+  padding-bottom: 60px !important; 
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .urban-nav-links {
+    display: none;
+  }
+  .urban-title-main { font-size: 2.2rem; }
+  .urban-title-sub { font-size: 1.6rem; }
+  .urban-footer { padding: 6px 0; }
+}
