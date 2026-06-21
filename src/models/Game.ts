@@ -1,23 +1,28 @@
-// Game.js
-// Modele de donnees - contient uniquement l'etat du jeu
-
 import Board from "./Board.js";
+import Player from "./Player.js";
+
+type GameState = "ongoing" | "player1_wins" | "player2_wins";
 
 class Game {
-  constructor(player1, player2) {
+  player1: Player;
+  player2: Player;
+  board: Board;
+  currentTurn: number;
+  state: GameState;
+
+  constructor(player1: Player, player2: Player) {
     this.player1 = player1;
     this.player2 = player2;
     this.board = new Board();
     this.currentTurn = 0;
-    this.state = "ongoing"; // "ongoing", "player1_wins", "player2_wins"
+    this.state = "ongoing";
   }
 
-  
-  isOngoing() {
+  isOngoing(): boolean {
     return this.state === "ongoing";
   }
 
-  getWinner() {
+  getWinner(): Player | null {
     if (this.state === "player1_wins") return this.player1;
     if (this.state === "player2_wins") return this.player2;
     return null;

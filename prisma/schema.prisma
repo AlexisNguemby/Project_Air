@@ -1,0 +1,161 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  // Supprimez ou commentez cette ligne :
+  // output   = "../src/generated/prisma" 
+}
+
+datasource db {
+  provider = "mysql"
+ 
+}
+model Role {
+  role_id   Int       @id @default(autoincrement())
+  role_name String    @unique
+  
+  accounts  Account[]
+}
+
+model Class {
+  class_id   Int       @id @default(autoincrement())
+  class_name String    @unique
+  battling   Boolean   @default(false)
+  
+  accounts   Account[]
+}
+
+model Animation {
+  animation_id   Int    @id @default(autoincrement())
+  animation_name String @unique
+}
+
+model Account {
+  account_id   Int     @id @default(autoincrement())
+  account_name String  @unique
+  mail         String  @unique
+  password     String
+  power        Int     @default(0)
+  level        Int     @default(1)
+  avatar       String?
+  experience   Int     @default(0)
+  xp_max       Int     @default(100)
+  
+  role_id      Int
+  class_id     Int
+  
+  role         Role              @relation(fields: [role_id], references: [role_id], onDelete: Restrict)
+  class        Class             @relation(fields: [class_id], references: [class_id], onDelete: Restrict)
+  collections  Collection[]
+  decks        Deck[]
+  
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  
+  @@index([role_id])
+  @@index([class_id])
+}
+
+model Faction {
+  faction_id      Int    @id @default(autoincrement())
+  faction_name    String @unique
+  image_placeholder String?
+  
+  cards   Card[]
+}
+
+model Card {
+  card_id    Int     @id @default(autoincrement())
+  card_name  String  @unique
+  card_place String?
+  power      Int
+  attack     Int
+  card_img   String?
+  
+  faction_id Int
+  
+  faction    Faction               @relation(fields: [faction_id], references: [faction_id], onDelete: Restrict)
+  collections CollectionEntry[]
+  deckCards  DeckCard[]
+  
+  @@index([faction_id])
+}
+
+model Collection {
+  collection_id Int @id @default(autoincrement())
+  account_id    Int
+  
+  account       Account             @relation(fields: [account_id], references: [account_id], onDelete: Cascade)
+  entries       CollectionEntry[]
+  
+  @@index([account_id])
+}
+
+model CollectionEntry {
+  collection_id Int
+  card_id       Int
+  quantity      Int @default(1)
+  
+  collection Collection @relation(fields: [collection_id], references: [collection_id], onDelete: Cascade)
+  card       Card       @relation(fields: [card_id], references: [card_id], onDelete: Cascade)
+  
+  @@id([collection_id, card_id])
+  @@index([card_id])
+}
+
+model CustomDeck {
+  category_id Int     @id @default(autoincrement())
+  category    String?
+  
+  decks Deck[]
+}
+
+model Deck {
+  deck_id    Int     @id @default(autoincrement())
+  deck_name  String
+  attack     Int     @default(0)
+  power      Int     @default(0)
+  card_img   String?
+  
+  account_id    Int
+  category_id   Int?
+  
+  account       Account       @relation(fields: [account_id], references: [account_id], onDelete: Cascade)
+  customDeck    CustomDeck?   @relation(fields: [category_id], references: [category_id], onDelete: SetNull)
+  deckCards     DeckCard[]
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  
+  @@index([account_id])
+  @@index([category_id])
+}
+
+model DeckCard {
+  deck_id    Int
+  card_id    Int
+  position   Int @default(0)
+  
+  deck Deck   @relation(fields: [deck_id], references: [deck_id], onDelete: Cascade)
+  card Card   @relation(fields: [card_id], references: [card_id], onDelete: Cascade)
+  
+  @@id([deck_id, card_id, position])
+  @@index([card_id])
+}
+
+model Building {
+  building_id   Int     @id @default(autoincrement())
+  building_name String  @unique
+  description   String?
+}
+
+model Battling {
+  battling_id Int @id @default(autoincrement())
+}
+
+model Related {
+  related_id Int @id @default(autoincrement())
+}
