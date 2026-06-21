@@ -1,3 +1,8 @@
+-- Créer l'utilisateur et les permissions
+CREATE USER IF NOT EXISTS 'project_air_user'@'%' IDENTIFIED BY 'project_air_password_change_me';
+GRANT ALL PRIVILEGES ON project_air.* TO 'project_air_user'@'%';
+FLUSH PRIVILEGES;
+
 CREATE TABLE IF NOT EXISTS Role (
   role_id INT AUTO_INCREMENT PRIMARY KEY,
   role_name VARCHAR(255) UNIQUE NOT NULL

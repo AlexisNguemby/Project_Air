@@ -4,14 +4,15 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
+  // Supprimez ou commentez cette ligne :
+  // output   = "../src/generated/prisma" 
 }
 
 datasource db {
   provider = "mysql"
+ 
 }
-
 model Role {
   role_id   Int       @id @default(autoincrement())
   role_name String    @unique
@@ -36,6 +37,7 @@ model Account {
   account_id   Int     @id @default(autoincrement())
   account_name String  @unique
   mail         String  @unique
+  password     String
   power        Int     @default(0)
   level        Int     @default(1)
   avatar       String?
