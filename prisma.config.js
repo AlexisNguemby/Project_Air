@@ -1,8 +1,9 @@
-import "dotenv/config";
+import "dotenv/config"; // Charge les variables du fichier .env
 import { defineConfig } from "@prisma/config";
+
 export default defineConfig({
-    datasource: {
-        url: process.env.DATABASE_URL,
-    },
+  schema: "prisma/schema.prisma",
+  datasource: {
+    url: process.env.DATABASE_URL, // Prisma 7 récupère l'URL de connexion MySQL ici !
+  },
 });
-//# sourceMappingURL=prisma.config.js.map

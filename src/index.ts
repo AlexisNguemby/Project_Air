@@ -2,7 +2,7 @@
 //  index.ts — Point d'entrée du serveur Fastify
 //  Ordre d'enregistrement important :
 //    1. Plugins globaux (prisma, jwt)
-//    2. Routes
+//    2. Routes avec préfixes d'URL
 // ============================================================
 
 import "dotenv/config";
@@ -26,9 +26,9 @@ async function start() {
   await fastify.register(prismaPlugin);
   await fastify.register(jwtPlugin);
 
-  // 2. Routes
-  await fastify.register(authRoutes);
-  await fastify.register(boosterRoutes);
+  // 2. Routes (Le préfixe global /auth est configuré ici !)
+  await fastify.register(authRoutes, { prefix: "/auth" });
+  await fastify.register(boosterRoutes, { prefix: "/boosters" });
 
   // 3. Démarrage
   const port = Number(process.env.PORT ?? 3000);

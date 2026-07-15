@@ -5,8 +5,9 @@
 // ============================================================
 
 import bcrypt from "bcrypt";
-import type { PrismaClient } from "@prisma/client";
 
+// 💡 Typage direct pour contourner le problème de résolution de module de l'éditeur
+import { PrismaClient } from "@prisma/client";
 // Nombre de "tours" de hachage bcrypt. 12 est un bon compromis sécurité/performance.
 const SALT_ROUNDS = 12;
 

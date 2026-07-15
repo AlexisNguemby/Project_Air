@@ -5,14 +5,12 @@
 
 generator client {
   provider = "prisma-client-js"
-  // Supprimez ou commentez cette ligne :
-  // output   = "../src/generated/prisma" 
 }
 
 datasource db {
   provider = "mysql"
- 
 }
+
 model Role {
   role_id   Int       @id @default(autoincrement())
   role_name String    @unique
@@ -60,26 +58,26 @@ model Account {
 }
 
 model Faction {
-  faction_id      Int    @id @default(autoincrement())
-  faction_name    String @unique
+  faction_id        Int     @id @default(autoincrement())
+  faction_name      String  @unique
   image_placeholder String?
   
   cards   Card[]
 }
 
 model Card {
-  card_id    Int     @id @default(autoincrement())
-  card_name  String  @unique
-  card_place String?
-  power      Int
-  attack     Int
-  card_img   String?
+  card_id     Int     @id @default(autoincrement())
+  card_name   String  @unique
+  card_place  String?
+  power       Int
+  attack      Int
+  card_img    String?
   
-  faction_id Int
+  faction_id  Int
   
-  faction    Faction               @relation(fields: [faction_id], references: [faction_id], onDelete: Restrict)
+  faction     Faction               @relation(fields: [faction_id], references: [faction_id], onDelete: Restrict)
   collections CollectionEntry[]
-  deckCards  DeckCard[]
+  deckCards   DeckCard[]
   
   @@index([faction_id])
 }

@@ -1,6 +1,6 @@
 // ============================================================
-//  auth.routes.ts — Routes HTTP
-//  Déclare POST /auth/register et POST /auth/login.
+//  auth.routes.ts — Routes HTTP (Sans préfixe en dur)
+//  Déclare /register, /login, /me, /me/collection.
 //  Ce fichier gère uniquement le HTTP : status codes, réponses JSON.
 //  La logique est déléguée à auth.service.ts.
 // ============================================================
@@ -16,7 +16,7 @@ export default async function authRoutes(fastify: FastifyInstance) {
   //  POST /auth/register — Créer un compte
   // ----------------------------------------------------------
   fastify.post<{ Body: RegisterBody }>(
-    "/auth/register",
+    "/register", // 💡 Simplifié, le préfixe /auth est géré par index.ts
     { schema: registerSchema },
     async (request: FastifyRequest<{ Body: RegisterBody }>, reply: FastifyReply) => {
       try {
@@ -57,7 +57,7 @@ export default async function authRoutes(fastify: FastifyInstance) {
   //  POST /auth/login — Se connecter
   // ----------------------------------------------------------
   fastify.post<{ Body: LoginBody }>(
-    "/auth/login",
+    "/login", // 💡 Simplifié, le préfixe /auth est géré par index.ts
     { schema: loginSchema },
     async (request: FastifyRequest<{ Body: LoginBody }>, reply: FastifyReply) => {
       try {
@@ -93,10 +93,9 @@ export default async function authRoutes(fastify: FastifyInstance) {
 
   // ----------------------------------------------------------
   //  GET /auth/me — Profil de l'utilisateur connecté (protégé)
-  //  Exemple d'utilisation du token JWT pour protéger une route.
   // ----------------------------------------------------------
   fastify.get(
-    "/auth/me",
+    "/me", // 💡 Simplifié, le préfixe /auth est géré par index.ts
     {
       onRequest: [fastify.authenticate], // middleware défini dans jwt.plugin.ts
     },
@@ -131,7 +130,7 @@ export default async function authRoutes(fastify: FastifyInstance) {
   //  GET /auth/me/collection — Collection du joueur connecté
   // ----------------------------------------------------------
   fastify.get(
-    "/auth/me/collection",
+    "/me/collection", // 💡 Simplifié, le préfixe /auth est géré par index.ts
     {
       onRequest: [fastify.authenticate],
     },
