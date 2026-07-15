@@ -49,7 +49,7 @@ model Account {
   
   role         Role              @relation(fields: [role_id], references: [role_id], onDelete: Restrict)
   class        Class             @relation(fields: [class_id], references: [class_id], onDelete: Restrict)
-  collections  Collection[]
+  collection   Collection?
   decks        Deck[]
   
   createdAt    DateTime          @default(now())
@@ -86,12 +86,10 @@ model Card {
 
 model Collection {
   collection_id Int @id @default(autoincrement())
-  account_id    Int
+  account_id    Int @unique
   
   account       Account             @relation(fields: [account_id], references: [account_id], onDelete: Cascade)
   entries       CollectionEntry[]
-  
-  @@index([account_id])
 }
 
 model CollectionEntry {

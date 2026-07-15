@@ -11,6 +11,7 @@ import Fastify from "fastify";
 import prismaPlugin from "./plugins/prisma.plugin.js";
 import jwtPlugin from "./plugins/jwt.plugin.js";
 import authRoutes from "./modules/auth/auth.routes.js";
+import boosterRoutes from "./modules/boosters/boosters.routes.js";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -27,6 +28,7 @@ async function start() {
 
   // 2. Routes
   await fastify.register(authRoutes);
+  await fastify.register(boosterRoutes);
 
   // 3. Démarrage
   const port = Number(process.env.PORT ?? 3000);

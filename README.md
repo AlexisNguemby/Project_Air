@@ -29,6 +29,8 @@ cd Project_Air
 npm install
 ```
 
+La génération Prisma est maintenant automatisée après l'installation.
+
 ### 3. Configurer l'environnement
 
 Copie le fichier d'exemple et remplis les valeurs :
@@ -86,7 +88,7 @@ INSERT IGNORE INTO Class (class_name, battling) VALUES ('novice', FALSE);
 ### 6. Lancer le serveur
 
 ```bash
-npx tsc && node dist/index.js
+npm run dev
 ```
 
 Le serveur démarre sur : http://localhost:3000
@@ -102,6 +104,8 @@ Le serveur démarre sur : http://localhost:3000
 | POST | `/auth/register` | ❌ | Créer un compte |
 | POST | `/auth/login` | ❌ | Se connecter |
 | GET | `/auth/me` | ✅ JWT | Voir son profil |
+| GET | `/auth/me/collection` | ✅ JWT | Voir sa collection |
+| POST | `/boosters/open` | ✅ JWT | Ouvrir un booster |
 
 #### POST /auth/register
 

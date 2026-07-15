@@ -126,4 +126,63 @@ export default async function authRoutes(fastify: FastifyInstance) {
       return reply.send({ account });
     }
   );
+
+  // ----------------------------------------------------------
+  //  GET /auth/me/collection — Collection du joueur connecté
+  // ----------------------------------------------------------
+  fastify.get(
+    "/auth/me/collection",
+    {
+      onRequest: [fastify.authenticate],
+    },
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const payload = request.user as { sub: number; name: string };
+
+      const account = await fastify.prisma.account.findUnique({
+        where: { account_id: payload.sub },
+        select: {
+          account_id: true,
+          account_name: true,
+          collection: {
+            select: {
+              collection_id: true,
+              entries: {
+                select: {
+                  quantity: true,
+                  card: {
+                    select: {
+                      card_id: true,
+                      card_name: true,
+                      card_place: true,
+                      power: true,
+                      attack: true,
+                      card_img: true,
+                      faction: {
+                        select: {
+                          faction_id: true,
+                          faction_name: true,
+                          image_placeholder: true,
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
+
+      if (!account) {
+        return reply.code(404).send({ error: "Compte introuvable." });
+      }
+
+      return reply.send({
+        collection: account.collection ?? {
+          collection_id: null,
+          entries: [],
+        },
+      });
+    }
+  );
 }

@@ -13,8 +13,10 @@
     "fastify-plugin": "^6.0.0"
   },
   "scripts": {
+    "generate": "prisma generate",
+    "postinstall": "npm run generate",
     "start": "node src/index.ts",
-    "dev": "npx tsc && node dist/index.js"
+    "dev": "npm run generate && npx tsc && node dist/index.js"
   },
   "devDependencies": {
     "@prisma/config": "^7.8.0",
